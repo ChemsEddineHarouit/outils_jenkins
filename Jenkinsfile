@@ -19,7 +19,6 @@ pipeline {
         stage('CodeAnalysis') {
           steps {
             echo 'analyse'
-            withSonarQubeEnv 'sonarqube'
           }
         }
         stage('Test Reporting') {
@@ -34,7 +33,7 @@ pipeline {
         bat 'gradle uploadArchives'
       }
     }
-    stage('error') {
+    stage('Slack-Notification') {
       steps {
         slackSend(message: 'Deploiement effectué lkhawa')
       }
