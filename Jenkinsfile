@@ -29,11 +29,17 @@ pipeline {
       }
     }
     stage('Deployment') {
+      when{
+        branch 'master'
+      }
       steps {
         bat 'gradle uploadArchives'
       }
     }
     stage('Slack-Notification') {
+      when{
+        branch 'master'
+      }
       steps {
         slackSend(message: 'Deploiement effectué lkhawa')
       }
