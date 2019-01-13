@@ -18,12 +18,14 @@ pipeline {
       parallel {
         stage('CodeAnalysis') {
           steps {
-            script{
+            script {
               scannerHome = tool 'SonarQubeScanner'
             }
-            withSonarQubeEnv('sonarqube'){
+
+            withSonarQubeEnv('sonarqube') {
               bat "${scannerHome}/bin/sonar-scanner"
             }
+
             echo 'analyse'
           }
         }
