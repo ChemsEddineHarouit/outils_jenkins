@@ -28,5 +28,15 @@ pipeline {
         }
       }
     }
+    stage('Deployment') {
+      steps {
+        bat 'gradle uploadArchives'
+      }
+    }
+    stage('') {
+      steps {
+        slackSend(message: 'Deploiement effectué lkhawa')
+      }
+    }
   }
 }
