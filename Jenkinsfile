@@ -14,9 +14,18 @@ pipeline {
         mail(subject: 'Jenkins Build', body: 'New Jenkins Pull hehe', to: 'fa_bouchebaba@esi.dz ; fc_harouit@esi.dz')
       }
     }
-    stage('GG') {
-      steps {
-        echo 'aaa'
+    stage('CodeCheck') {
+      parallel {
+        stage('CodeAnalysis') {
+          steps {
+            echo 'analyse'
+          }
+        }
+        stage('Test Reporting') {
+          steps {
+            jacoco()
+          }
+        }
       }
     }
   }
