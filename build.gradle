@@ -1,0 +1,51 @@
+
+
+plugins {
+    id 'java'
+}
+apply plugin: "jacoco"
+
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+group 'matrix_test'
+version '1.0'
+
+
+
+jacoco {
+    toolVersion = "0.8.1"
+    reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+
+
+uploadArchives {
+    repositories {
+        maven {
+            credentials {
+                username "myMavenRepo"
+                password "12345"
+            }
+            url "https://mymavenrepo.com/repo/qxcijloaZEK4CD46Dunl/"
+        }
+    }
+}
+
+apply plugin: 'java'
+
+
+uploadArchives.dependsOn("build")
+
+javadoc {
+    source "com/"
+}
+
+javadoc.dependsOn("build")
