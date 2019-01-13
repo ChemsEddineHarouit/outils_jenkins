@@ -11,7 +11,7 @@ pipeline {
     }
     stage('Mail-Notification') {
       steps {
-        mail(subject: 'Jenkins Build', body: 'New Jenkins Pull hehe', to: 'fa_bouchebaba@esi.dz;fc_harouit@esi.dz')
+        mail(subject: 'Jenkins Build', body: 'New Jenkins Pull hehe', to: 'fa_bouchebaba@esi.dz ; fc_harouit@esi.dz')
       }
     }
     stage('GG') {
